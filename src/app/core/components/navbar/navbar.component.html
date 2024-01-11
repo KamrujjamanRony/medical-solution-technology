@@ -1,0 +1,71 @@
+<div class="bg-[#85C1E9]">
+  <div class="navbar container mx-auto roboto">
+    <div class="navbar-start">
+      <div class="dropdown">
+        <label tabindex="0" class="btn btn-ghost lg:hidden">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+        </label>
+        <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[1000000000000000000000] p-2 shadow bg-[#85C1E9] text-primary rounded w-52 text-xl"
+      >
+        <li class="rounded">
+          <a routerLink="/">Home</a>
+        </li>
+        <app-dropdown-menu></app-dropdown-menu>
+        <li>
+          <a routerLink="about">About Us</a>
+        </li>
+        <li>
+          <a routerLink="contact">Contact Us</a>
+        </li>
+      </ul>
+      </div>
+      <a routerLink="/" class="hidden md:inline-block">
+        <img src="../../../../assets/logo.png" class="w-15 md:w-20 -my-3" alt="" />
+      </a>
+      <ul class="typed hidden md:inline-block">
+        <li><span>Medical</span></li>
+        <li><span>Solution</span></li>
+        <li><span>Technology </span></li>
+      </ul>
+    </div>
+    <div class="navbar-center hidden lg:flex">
+      <ul class="menu menu-horizontal p-1 items-center rounded text-sm md:text-md lg:text-xl text-primary">
+        <li class="rounded">
+          <a routerLink="/">Home</a>
+        </li>
+        <app-dropdown-menu></app-dropdown-menu>
+        <li>
+          <a routerLink="about">About Us</a>
+        </li>
+        <li>
+          <a routerLink="contact">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+    <div class="navbar-end">
+      <div class="form-control flex flex-row relative">
+        <input
+          type="text"
+          placeholder="Search product"
+          class="input input-bordered w-48 lg:w-auto rounded-sm bg-purple-400 text-primary placeholder-search placeholder:text-primary"
+          [(ngModel)]="searchTerm"
+          (input)="onSearch()"
+        />
+        <button class="btn btn-primary rounded-sm mr-2 md:mr-0" (click)="onSearch()">
+          <i class="fa fa-search"></i>
+        </button>
+    
+        <!-- Display the matching product names -->
+        <div *ngIf="searchTerm && products.length > 0" class="search-results max-h-[80vh] overflow-y-auto">
+          <ul>
+            <li *ngFor="let product of products" class="hover:bg-primary hover:text-white" [routerLink]="['/product', product?.id]" (click)="onProductClick()">
+              {{ product.productName }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

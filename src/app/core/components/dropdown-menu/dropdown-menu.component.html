@@ -1,0 +1,49 @@
+<!-- dropdown-menu.component.html -->
+<li
+  class="relative group"
+  (mouseenter)="toggleDropdownE()"
+  (mouseleave)="toggleDropdownL()"
+  (click)="toggleDropdown()"
+>
+  <button class="group relative">
+    <span class="mr-5">Products</span>
+    <svg
+      [class.rotate-0]="!isOpen"
+      [class.-rotate-180]="isOpen"
+      class="transition-transform duration-200 transform absolute right-3 top-1/2 -mt-1 pointer-events-none"
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M2 3L6 7L10 3"
+        [style.stroke]="'currentColor'"
+        [style.strokeWidth]="'2px'"
+        [style.strokeLinecap]="'round'"
+        [style.strokeLinejoin]="'round'"
+      ></path>
+    </svg>
+  </button>
+  <ul
+    *ngIf="isOpen"
+    class="absolute left-0 top-5 lg:top-8 mt-2 w-48 bg-[#85C1E9] rounded-lg py-2 z-[10000000000]"
+  >
+    <li>
+      <a (click)="toggleDropdown()" routerLink="/products/pathology">Pathology</a>
+    </li>
+    <li>
+      <a (click)="toggleDropdown()" routerLink="/products/surgical">Surgical</a>
+    </li>
+    <li>
+      <a (click)="toggleDropdown()" routerLink="/products/imaging">Imaging</a>
+    </li>
+    <li>
+      <a (click)="toggleDropdown()" routerLink="/products/ot">OT Item</a>
+    </li>
+    <li>
+      <a (click)="toggleDropdown()" routerLink="/products/others">Others</a>
+    </li>
+  </ul>
+</li>

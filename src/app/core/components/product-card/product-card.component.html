@@ -1,0 +1,13 @@
+<a [routerLink]="['/product', product?.id]" class="card md:w-60 sm:w-[90vw] bg-base-100 shadow-xl mb-8 h-[450px]">
+  <figure><img [src]="
+    product?.imageUrl !== ''
+      ? ImageApi + product.imageUrl
+      : emptyImg
+  "
+      alt="Product Image" class="w-full h-[250px]" /></figure>
+  <div class="card-body">
+    <h2 class="card-title roboto text-primary">
+      {{ product?.productName }}
+    </h2>
+  </div> 
+</a>

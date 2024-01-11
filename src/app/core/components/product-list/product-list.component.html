@@ -1,0 +1,225 @@
+<app-cover [title]="yourTitle" [sub1]="yourSub1" [sub2]="yourSub2" [img]="img"></app-cover>
+
+<ng-container *ngIf="loading; else productTable">
+  <div
+    class="block mt-10 mb-4 mx-auto h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+    role="status"
+  >
+    <span
+      class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+      >Loading...</span
+    >
+  </div>
+
+  <div class="text-center">Loading...</div>
+</ng-container>
+
+<ng-template #productTable>
+  <div class="container mx-auto flex justify-end">
+    <a
+      routerLink="add-product"
+      class="bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded uppercase"
+    >
+      add product
+    </a>
+  </div>
+
+  <div class="mt-4 mx-4 hidden lg:block">
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr
+              class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+            >
+              <th class="px-4 py-3">Image</th>
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">Brand</th>
+              <th class="px-4 py-3">Model</th>
+              <th class="px-4 py-3">Origin</th>
+              <th class="px-4 py-3">Category</th>
+              <th class="px-4 py-3">Description</th>
+              <th class="px-4 py-3">Additional Information</th>
+              <th class="px-4 py-3">Special Feature</th>
+              <th class="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody
+            class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+          >
+            <ng-container *ngIf="products$">
+              <tr
+                *ngFor="let product of products$ | async"
+                class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
+              >
+                <td class="px-4 py-3">
+                  <img
+                    [src]="
+                      product?.imageUrl !== ''
+                        ? ImageApi + product.imageUrl
+                        : emptyImg
+                    "
+                    alt="Product Image"
+                    class="w-8 md:w-16 rounded"
+                  />
+                </td>
+                <td class="px-4 py-3 text-xs">{{ product.productName }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.brand }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.model }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.origin }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.productCategory }}</td>
+                <td class="px-4 py-3 text-xs">{{ product?.description?.slice(0,10) }}...</td>
+                <td class="px-4 py-3 text-xs">
+                  {{ product?.aditionalInformation?.slice(0,10) }}...
+                </td>
+                <td class="px-4 py-3 text-xs">{{ product?.specialFeature?.slice(0,10) }}...</td>
+                <td class="px-4 py-3 text-xs">
+                  <a
+                    [routerLink]="['edit-product', product.id]"
+                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded dark:bg-green-700 dark:text-green-100 mr-2 inline-block my-2"
+                  >
+                    Edit
+                  </a>
+                  <button
+                    (click)="onDelete(product.id)"
+                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-green-100 rounded dark:bg-red-700 dark:text-green-100 inline-block"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+      ></div>
+    </div>
+  </div>
+  <div class="mt-4 mx-4 hidden md:block lg:hidden">
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr
+              class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+            >
+              <th class="px-4 py-3">Image</th>
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">Brand</th>
+              <th class="px-4 py-3">Model</th>
+              <th class="px-4 py-3">Origin</th>
+              <th class="px-4 py-3">Category</th>
+              <th class="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody
+            class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+          >
+            <ng-container *ngIf="products$">
+              <tr
+                *ngFor="let product of products$ | async"
+                class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
+              >
+                <td class="px-4 py-3">
+                  <img
+                    [src]="
+                      product?.imageUrl !== ''
+                        ? ImageApi + product.imageUrl
+                        : emptyImg
+                    "
+                    alt="Product Image"
+                    class="w-8 md:w-16 rounded"
+                  />
+                </td>
+                <td class="px-4 py-3 text-xs">{{ product.productName }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.brand }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.model }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.origin }}</td>
+                <td class="px-4 py-3 text-xs">{{ product.productCategory }}</td>
+                <td class="px-4 py-3 text-xs">
+                  <a
+                    [routerLink]="['edit-product', product.id]"
+                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded dark:bg-green-700 dark:text-green-100 mr-2 inline-block my-2"
+                  >
+                    Edit
+                  </a>
+                  <button
+                    (click)="onDelete(product.id)"
+                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-green-100 rounded dark:bg-red-700 dark:text-green-100 inline-block"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+      ></div>
+    </div>
+  </div>
+  <div class="mt-4 mx-4 md:hidden">
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr
+              class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+            >
+              <th class="px-4 py-3">Image</th>
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody
+            class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+          >
+            <ng-container *ngIf="products$">
+              <tr
+                *ngFor="let product of products$ | async"
+                class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400"
+              >
+                <td class="px-4 py-3">
+                  <img
+                    [src]="
+                      product?.imageUrl !== ''
+                        ? ImageApi + product.imageUrl
+                        : emptyImg
+                    "
+                    alt="Product Image"
+                    class="w-8 md:w-16 rounded"
+                  />
+                </td>
+                <td class="px-4 py-3 text-xs">{{ product.productName }}</td>
+                <td class="px-4 py-3 text-xs">
+                  <a
+                    [routerLink]="['edit-product', product.id]"
+                    class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded dark:bg-green-700 dark:text-green-100 mr-2 inline-block my-2"
+                  >
+                    Edit
+                  </a>
+                  <button
+                    (click)="onDelete(product.id)"
+                    class="px-2 py-1 font-semibold leading-tight text-red-700 bg-green-100 rounded dark:bg-red-700 dark:text-green-100 inline-block"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
+      ></div>
+    </div>
+  </div>
+</ng-template>
+
+
+

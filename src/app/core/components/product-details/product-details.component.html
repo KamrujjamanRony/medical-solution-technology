@@ -1,0 +1,82 @@
+<app-cover [title]="yourTitle" [sub1]="yourSub1" [sub2]="yourSub2" [img]="img"></app-cover>
+
+<div class="container mx-auto my-12 text-sm monospace">
+  <div class="card md:card-side bg-base-100 shadow-xl rounded-none">
+    <img
+    *ngIf="product"
+      src="{{
+        product?.imageUrl !== ''
+          ? ImageApi + product?.imageUrl
+          : emptyImg
+      }}"
+      class="min-h-96 md:h-96 m-2 hover-scale"
+      alt="Product Image"
+    />
+
+    <div class="card-body">
+      <h2 class="card-title roboto text-primary">{{ product?.productName }}</h2>
+      <div *ngIf="product?.brand">
+        <p><span class="font-semibold">Brand:</span> {{ product?.brand }}</p>
+      </div>
+
+      <div *ngIf="product?.model">
+        <p><span class="font-semibold">model:</span> {{ product?.model }}</p>
+      </div>
+
+      <div *ngIf="product?.origin">
+        <p><span class="font-semibold">origin:</span> {{ product?.origin }}</p>
+      </div>
+
+      <div *ngIf="product?.productCategory">
+        <p>
+          <span class="font-semibold">Product Category:</span>
+          {{ product?.productCategory }}
+        </p>
+      </div>
+
+      <div *ngIf="product?.description">
+        <p class="font-semibold">Description:</p>
+        <p style="white-space: pre-line">{{ product.description }}</p>
+    </div>
+
+    <div *ngIf="product?.aditionalInformation">
+      <p class="font-semibold">Additional Information:</p>
+      <p style="white-space: pre-line">{{ product.aditionalInformation }}</p>
+    </div>
+
+    <div *ngIf="product?.specialFeature">
+      <p class="font-semibold">Special Feature:</p>
+      <p style="white-space: pre-line">{{ product.specialFeature }}</p>
+    </div>
+
+      <!-- Download Catalog Link -->
+      <div *ngIf="product?.catalogUrl" class="card-actions justify-end items-end">
+        <a
+        class="btn btn-primary rounded-none text-white px-2 md:px-5 lg:px-8 font-light lg:text-xl md:text-md text-sm btn-xs md:btn-md"
+          [href]="
+            'https://drive.google.com/uc?export=download&id=' +
+            product?.catalogUrl
+          "
+          target="_blank"
+          download
+          rel="noopener noreferrer"
+        >
+          Download Product Catalog
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mx-auto">
+  <div class="text-center">
+    <h1 class="text-5xl font-bold righteous text-primary my-10">Our All Products</h1>
+    <div
+      class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 justify-items-center gap-10"
+    >
+      <div *ngFor="let product of products$ | async">
+        <app-product-card [product]="product"></app-product-card>
+      </div>
+    </div>
+  </div>
+</div>

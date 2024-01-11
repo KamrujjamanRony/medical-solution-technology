@@ -1,0 +1,40 @@
+.typed {
+  line-height: 45px;
+  height: 45px;
+  overflow: hidden;
+}
+
+.typed li {
+  color: #4a11d5;
+  font-size: 20px;
+  font-weight: 800;
+  list-style: none;
+  animation: slide 6s steps(1) infinite;
+  position: relative;
+  top: 0;
+}
+.typed li span::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  border-left: 2px solid #4a11d5;
+  background: #85c1e9;
+  animation: cursor 1s infinite step-end;
+  animation: typing 4s steps(12) infinite;
+}
+@keyframes cursor {
+  0%,
+  100% {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #4a11d5;
+  }
+}
+@keyframes typing {
+  100% {
+    left: 25ch;
+  }
+}
