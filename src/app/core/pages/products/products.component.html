@@ -22,34 +22,34 @@
   >
     <!-- Display products based on category -->
     <ng-container *ngIf="category === 'pathology'">
-      <div *ngFor="let product of pathology">
+      <div *ngFor="let product of sortProducts(pathology)">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </ng-container>
     <ng-container *ngIf="category === 'surgical'">
-      <div *ngFor="let product of surgical">
+      <div *ngFor="let product of sortProducts(surgical)">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </ng-container>
     <ng-container *ngIf="category === 'imaging'">
-      <div *ngFor="let product of imaging">
+      <div *ngFor="let product of sortProducts(imaging)">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </ng-container>
     <ng-container *ngIf="category === 'ot'">
-      <div *ngFor="let product of ot">
+      <div *ngFor="let product of sortProducts(ot)">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </ng-container>
     <ng-container *ngIf="category === 'others'">
-      <div *ngFor="let product of others">
+      <div *ngFor="let product of sortProducts(others)">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </ng-container>
 
     <!-- Display all products if category is all -->
     <ng-container *ngIf="category === 'all'">
-      <div *ngFor="let product of products">
+      <div *ngFor="let product of sortProducts(products)">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </ng-container>

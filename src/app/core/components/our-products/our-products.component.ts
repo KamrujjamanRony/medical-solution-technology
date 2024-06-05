@@ -30,6 +30,14 @@ export class OurProductsComponent implements OnInit {
     // });
   }
 
+  sortProducts(data: any): any {
+    if (data.length === 0) {
+      return data;
+    }
+
+    return data.sort((a: any, b: any) => a.productSl - b.productSl);
+  }
+
   scrollToTopAndNavigate(route: string): void {
     // Scroll to the top of the page
     window.scrollTo(0, 0);

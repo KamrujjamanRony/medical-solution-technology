@@ -48,6 +48,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     const formData = new FormData();
 
     formData.append('CompanyID', environment.companyCode.toString());
+    formData.append('productSl', this.productInfo?.productSl ?? '');
     formData.append('ProductCategory', this.productInfo?.productCategory ?? '');
     formData.append('ProductName', this.productInfo?.productName ?? '');
     formData.append('Brand', this.productInfo?.brand ?? '');

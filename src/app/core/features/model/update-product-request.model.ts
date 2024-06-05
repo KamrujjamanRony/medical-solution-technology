@@ -1,5 +1,6 @@
 export interface UpdateProductRequest {
     CompanyID: number;
+    productSl: string,
     ProductCategory: string,
     ProductName: string,
     Brand: string,

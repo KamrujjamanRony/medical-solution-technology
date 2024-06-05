@@ -40,6 +40,14 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  sortProducts(data: any): any {
+    if (data.length === 0) {
+      return data;
+    }
+
+    return data.sort((a: any, b: any) => a.productSl - b.productSl);
+  }
+
   ngOnDestroy(): void {
     this.paramsSubscription?.unsubscribe();
   };

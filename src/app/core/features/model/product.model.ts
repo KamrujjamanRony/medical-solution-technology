@@ -1,6 +1,7 @@
 export interface ProductModel {
     id: string;
     companyID: number;
+    productSl: string;
     productCategory: string;
     productName: string;
     brand: string;

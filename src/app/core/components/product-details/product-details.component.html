@@ -74,7 +74,7 @@
     <div
       class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-1 justify-items-center gap-10"
     >
-      <div *ngFor="let product of products$ | async">
+      <div *ngFor="let product of sortProducts(products$ | async)">
         <app-product-card [product]="product"></app-product-card>
       </div>
     </div>

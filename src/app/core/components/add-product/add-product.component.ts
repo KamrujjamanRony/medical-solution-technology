@@ -27,6 +27,7 @@ export class AddProductComponent implements OnDestroy {
     // Initialize model properties
     this.model = {
       CompanyID: environment.companyCode,
+      productSl: '1000',
       ProductCategory: '',
       ProductName: '',
       Brand: '',
@@ -46,6 +47,7 @@ export class AddProductComponent implements OnDestroy {
     const formData = new FormData();
 
     formData.append('CompanyID', this.model.CompanyID.toString());
+    formData.append('productSl', this.model.productSl);
     formData.append('ProductCategory', this.model.ProductCategory);
     formData.append('ProductName', this.model.ProductName);
     formData.append('Brand', this.model.Brand);
