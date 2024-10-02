@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeroComponent } from './core/components/hero/hero.component';
 import { OurProductsComponent } from './core/components/our-products/our-products.component';
 import { CoverComponent } from './core/components/cover/cover.component';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HeaderComponent } from './core/components/header/header.component';
 import { DropdownMenuComponent } from './core/components/dropdown-menu/dropdown-menu.component';
 import { ProductCardComponent } from './core/components/product-card/product-card.component';
@@ -40,51 +40,44 @@ import { CarouselListComponent } from './core/components/carousel-list/carousel-
 import { AddCarouselComponent } from './core/components/add-carousel/add-carousel.component';
 import { EditCarouselComponent } from './core/components/edit-carousel/edit-carousel.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    AppFooterComponent,
-    HomeComponent,
-    CarouselComponent,
-    HeroComponent,
-    OurProductsComponent,
-    CoverComponent,
-    HeaderComponent,
-    DropdownMenuComponent,
-    ProductCardComponent,
-    ProductsComponent,
-    ProductDetailsComponent,
-    MainLayoutComponent,
-    AdminLayoutComponent,
-    DashboardComponent,
-    SidebarComponent,
-    BannerComponent,
-    ProductListComponent,
-    AboutComponent,
-    ContactComponent,
-    AddProductComponent,
-    EditProductComponent,
-    DeleteConfirmationModalComponent,
-    AboutUsComponent,
-    ContactUsComponent,
-    CarouselListComponent,
-    AddCarouselComponent,
-    EditCarouselComponent,
-  ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
-  bootstrap: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    HammerModule,
-    IgxCarouselModule,
-    IgxSliderModule,
-    HttpClientModule,
-    FormsModule,
-    MatDialogModule,
-  ],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavbarComponent,
+        AppFooterComponent,
+        HomeComponent,
+        CarouselComponent,
+        HeroComponent,
+        OurProductsComponent,
+        CoverComponent,
+        HeaderComponent,
+        DropdownMenuComponent,
+        ProductCardComponent,
+        ProductsComponent,
+        ProductDetailsComponent,
+        MainLayoutComponent,
+        AdminLayoutComponent,
+        DashboardComponent,
+        SidebarComponent,
+        BannerComponent,
+        ProductListComponent,
+        AboutComponent,
+        ContactComponent,
+        AddProductComponent,
+        EditProductComponent,
+        DeleteConfirmationModalComponent,
+        AboutUsComponent,
+        ContactUsComponent,
+        CarouselListComponent,
+        AddCarouselComponent,
+        EditCarouselComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        HammerModule,
+        IgxCarouselModule,
+        IgxSliderModule,
+        FormsModule,
+        MatDialogModule], providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
