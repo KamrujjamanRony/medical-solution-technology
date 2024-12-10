@@ -31,11 +31,13 @@ export class OurProductsComponent implements OnInit {
   }
 
   sortProducts(data: any): any {
-    if (data.length === 0) {
+    if (data?.length === 0 || !data) {
       return data;
     }
 
-    return data.sort((a: any, b: any) => a.productSl - b.productSl);
+    const sortedProducts = data?.sort((a: any, b: any) => a?.productSl - b?.productSl);
+
+    return sortedProducts.slice(0, 15);
   }
 
   scrollToTopAndNavigate(route: string): void {
