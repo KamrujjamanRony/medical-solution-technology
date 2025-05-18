@@ -35,7 +35,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
         this.loading = false;
       });
     }
-   }
+  }
 
   ngOnInit(): void {
     // this.products$ = this.productService.getCompanyProducts(this.companyID);
@@ -46,13 +46,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   sortProducts(data: any): any {
-    if (data.length === 0) {
+    if (data?.length === 0) {
       return data;
     }
 
-    return data.sort((a: any, b: any) => a.productSl - b.productSl);
+    return data?.sort((a: any, b: any) => a.productSl - b.productSl);
   }
-  
+
   onDelete(id: string): void {
     const dialogRef = this.dialog.open(DeleteConfirmationModalComponent);
 
