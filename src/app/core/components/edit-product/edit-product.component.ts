@@ -60,7 +60,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     formData.append('CatalogUrl', this.productInfo?.catalogUrl ?? '');
     if (this.file instanceof File) {
       formData.append('ImageFormFile', this.file);
-    } 
+    }
     else {
       formData.append('ImageUrl', this.url ?? '');
     }
@@ -69,7 +69,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
       this.editProductSubscription = this.productService.updateProduct(this.id, formData)
         .subscribe({
           next: (response) => {
-            this.router.navigate(['mst23/products']);
+            this.router.navigate(['mst49/products']);
           }
         });
     }

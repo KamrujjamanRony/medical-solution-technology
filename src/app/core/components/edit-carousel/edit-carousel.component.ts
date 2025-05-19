@@ -51,7 +51,7 @@ export class EditCarouselComponent implements OnInit, OnDestroy {
     formData.append('Description', this.carouselInfo?.description ?? '');
     if (this.file instanceof File) {
       formData.append('ImageFormFile', this.file);
-    } 
+    }
     else {
       formData.append('ImageUrl', this.url ?? '');
     }
@@ -60,7 +60,7 @@ export class EditCarouselComponent implements OnInit, OnDestroy {
       this.editCarouselSubscription = this.carouselService.updateCarousel(this.id, formData)
         .subscribe({
           next: (response) => {
-            this.router.navigate(['mst23/carousel']);
+            this.router.navigate(['mst49/carousel']);
           }
         });
     }

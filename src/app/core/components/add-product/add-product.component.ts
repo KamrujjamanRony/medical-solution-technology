@@ -64,7 +64,7 @@ export class AddProductComponent implements OnDestroy {
     this.addProductSubscription = this.productService.addProduct(formData)
       .subscribe({
         next: (response) => {
-          this.router.navigateByUrl('mst23/products');
+          this.router.navigateByUrl('mst49/products');
         },
         error: (error) => {
           console.error('Error adding product:', error);

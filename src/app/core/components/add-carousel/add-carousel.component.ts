@@ -47,7 +47,7 @@ export class AddCarouselComponent implements OnDestroy {
     this.addCarouselSubscription = this.carouselService.addCarousel(formData)
       .subscribe({
         next: (response) => {
-          this.router.navigateByUrl('mst23/carousel');
+          this.router.navigateByUrl('mst49/carousel');
         },
         error: (error) => {
           console.error('Error adding carousel:', error);

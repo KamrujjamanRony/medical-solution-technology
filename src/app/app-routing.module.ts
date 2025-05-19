@@ -45,7 +45,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'mst23',
+    path: 'mst49',
     component: AdminLayoutComponent,
     children: [
       { path: '', component: ProductListComponent },
