@@ -1,6 +1,7 @@
 // delete-confirmation-modal.component.ts
 
 import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { environment } from '@environments/environments';
 
@@ -51,6 +52,8 @@ import { environment } from '@environments/environments';
       text-align: center;
     }
   `],
+  standalone: true,
+  imports: [FormsModule]
 })
 export class DeleteConfirmationModalComponent {
   err: string = '';

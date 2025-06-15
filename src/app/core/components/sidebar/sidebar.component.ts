@@ -1,20 +1,21 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { AboutModel } from 'app/core/features/model/about.model';
 import { AboutService } from 'app/core/features/services/about.service';
 import { environment } from '@environments/environments';
-import { AddressModel } from 'app/core/features/model/address.model';
 import { ContactService } from 'app/core/features/services/contact.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  styleUrls: ['./sidebar.component.css'],
+  standalone: true,
+  imports: [RouterLink]
 })
 export class SidebarComponent implements OnInit {
   companyID: string = environment.companyCode.toString();
-  allAbout$?: Observable<AboutModel[]>;
-  allAddress$?: Observable<AddressModel[]>;
+  allAbout$?: Observable<any[]>;
+  allAddress$?: Observable<any[]>;
   about!: any;
   address!: any;
   constructor(private aboutService: AboutService, private contactService: ContactService) { }

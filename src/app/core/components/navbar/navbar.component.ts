@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '@environments/environments';
-import { ProductModel } from 'app/core/features/model/product.model';
 import { ProductService } from 'app/core/features/services/product.service';
 import { Observable } from 'rxjs';
+import { DropdownMenuComponent } from '../dropdown-menu/dropdown-menu.component';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  styleUrls: ['./navbar.component.css'],
+  standalone: true,
+  imports: [DropdownMenuComponent, FormsModule, RouterLink, CommonModule]
 })
 export class NavbarComponent implements OnInit {
   menuItems = [
@@ -50,14 +55,14 @@ export class NavbarComponent implements OnInit {
       link: '/about'
     }
   ];
-  products$?: Observable<ProductModel[]>;
-  originalProducts: ProductModel[] = [];
-  products: ProductModel[] = [];
+  products$?: Observable<any[]>;
+  originalProducts: any[] = [];
+  products: any[] = [];
 
   companyID: number = environment.companyCode;
   searchTerm: string = '';
 
-  constructor(private productService: ProductService) { 
+  constructor(private productService: ProductService) {
     if (!this.products$) {
       this.products$ = productService.getCompanyProducts(this.companyID);
     }

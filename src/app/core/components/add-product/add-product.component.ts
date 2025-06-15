@@ -2,14 +2,17 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environments';
-import { AddProductRequest } from 'app/core/features/model/add-poduct-request.model';
 import { ProductService } from 'app/core/features/services/product.service';
 import { Subscription } from 'rxjs';
+import { CoverComponent } from '../cover/cover.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  styleUrls: ['./add-product.component.css'],
+  standalone: true,
+  imports: [CoverComponent, FormsModule]
 })
 export class AddProductComponent implements OnDestroy {
   // Component properties
@@ -18,7 +21,7 @@ export class AddProductComponent implements OnDestroy {
   yourSub2: string = 'Add Product';
   err: string = '';
   img: string = 'https://img.freepik.com/free-photo/doctors-stethoscope-white-background_53876-146858.jpg?w=1380&t=st=1701010335~exp=1701010935~hmac=d87ccb8622bcec8e4fc9de907ac3d31b429544dc0e04920b7e8abdba2e682d62';
-  model: AddProductRequest;
+  model: any;
   private file?: File;
   private addProductSubscription?: Subscription;
   fileInput: any;

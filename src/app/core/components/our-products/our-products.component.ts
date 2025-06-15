@@ -1,17 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environments';
-import { ProductModel } from 'app/core/features/model/product.model';
 import { ProductService } from 'app/core/features/services/product.service';
 import { Observable } from 'rxjs';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
   selector: 'app-our-products',
   templateUrl: './our-products.component.html',
-  styleUrls: ['./our-products.component.css']
+  styleUrls: ['./our-products.component.css'],
+  standalone: true,
+  imports: [CommonModule, ProductCardComponent]
 })
 export class OurProductsComponent implements OnInit {
-  products$?: Observable<ProductModel[]>;
+  products$?: Observable<any[]>;
   companyID: number = environment.companyCode;
   loading: boolean = true;
 
@@ -43,7 +46,7 @@ export class OurProductsComponent implements OnInit {
   scrollToTopAndNavigate(route: string): void {
     // Scroll to the top of the page
     window.scrollTo(0, 0);
-  
+
     // Navigate to the specified route
     this.router.navigateByUrl(route);
   }

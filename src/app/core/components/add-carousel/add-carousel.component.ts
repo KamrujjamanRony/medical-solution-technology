@@ -1,14 +1,17 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '@environments/environments';
-import { AddCarouselRequest } from 'app/core/features/model/carousel.model';
 import { CarouselService } from 'app/core/features/services/carousel.service';
 import { Subscription } from 'rxjs';
+import { CoverComponent } from '../cover/cover.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-carousel',
   templateUrl: './add-carousel.component.html',
-  styleUrls: ['./add-carousel.component.css']
+  styleUrls: ['./add-carousel.component.css'],
+  standalone: true,
+  imports: [CoverComponent, FormsModule]
 })
 export class AddCarouselComponent implements OnDestroy {
   // Component properties
@@ -17,7 +20,7 @@ export class AddCarouselComponent implements OnDestroy {
   yourSub2: string = 'Add Carousel';
   err: string = '';
   img: string = 'https://img.freepik.com/free-photo/minimalistic-science-banner-with-stethoscope_23-2149431138.jpg?w=1380&t=st=1701010689~exp=1701011289~hmac=4cf7508d543ecb1a8ead41a975e20f6e66168d67642c1abfd887edf5c8fe7840';
-  model: AddCarouselRequest;
+  model: any;
   private file?: File;
   private addCarouselSubscription?: Subscription;
 

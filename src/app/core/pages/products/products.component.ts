@@ -1,7 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '@environments/environments';
-import { ProductModel } from 'app/core/features/model/product.model';
+import { CoverComponent } from 'app/core/components/cover/cover.component';
+import { ProductCardComponent } from 'app/core/components/product-card/product-card.component';
 import { ProductService } from 'app/core/features/services/product.service';
 import { Observable, Subscription } from 'rxjs';
 
@@ -9,6 +11,8 @@ import { Observable, Subscription } from 'rxjs';
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
+  standalone: true,
+  imports: [CoverComponent, ProductCardComponent, CommonModule]
 })
 export class ProductsComponent implements OnInit, OnDestroy {
   yourTitle!: string;
@@ -24,7 +28,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   imaging: any[] | undefined;
   ot: any[] | undefined;
   others: any[] | undefined;
-  products$?: Observable<ProductModel[]>;
+  products$?: Observable<any[]>;
   companyID: number = environment.companyCode;
   loading: boolean = true;
 
@@ -44,7 +48,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.category = params.get('category');
       if (this.category === 'pathology') {
         this.yourTitle = 'PATHOLOGY';
-      } else if (this.category==="surgical") {
+      } else if (this.category === "surgical") {
         this.yourTitle = "SURGICAL"
       } else if (this.category === 'imaging') {
         this.yourTitle = 'IMAGING';
@@ -81,23 +85,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.paramsSubscription?.unsubscribe();
   }
 
-  filterByParams(products: ProductModel[]): void {
-        this.pathology = products.filter(
-          (product) => product?.productCategory === 'PATHOLOGY'
-        );
-        this.surgical = this.products?.filter(
-          (product) => product?.category === "surgical-equipment"
-        );
-        this.imaging = products.filter(
-          (product) => product?.productCategory === 'IMAGING'
-        );
-        this.ot = products.filter(
-          (product) => product?.productCategory === 'OT ITEM'
-        );
-        this.others = products.filter(
-          (product) => product?.productCategory === 'OTHERS'
-        );
-        this.products = products;
+  filterByParams(products: any[]): void {
+    this.pathology = products.filter(
+      (product) => product?.productCategory === 'PATHOLOGY'
+    );
+    this.surgical = this.products?.filter(
+      (product) => product?.category === "surgical-equipment"
+    );
+    this.imaging = products.filter(
+      (product) => product?.productCategory === 'IMAGING'
+    );
+    this.ot = products.filter(
+      (product) => product?.productCategory === 'OT ITEM'
+    );
+    this.others = products.filter(
+      (product) => product?.productCategory === 'OTHERS'
+    );
+    this.products = products;
   }
 
   scrollToTop() {

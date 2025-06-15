@@ -1,14 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '@environments/environments';
-import { AddressModel } from 'app/core/features/model/address.model';
 import { ContactService } from 'app/core/features/services/contact.service';
 import { Subscription } from 'rxjs';
+import { CoverComponent } from '../cover/cover.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contact-us',
   templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.css']
+  styleUrls: ['./contact-us.component.css'],
+  standalone: true,
+  imports: [CoverComponent, FormsModule, CommonModule]
 })
 export class ContactUsComponent implements OnInit, OnDestroy {
   yourTitle: string = 'Update Contact Us';
@@ -16,7 +20,7 @@ export class ContactUsComponent implements OnInit, OnDestroy {
   yourSub2: string = 'Contact Us';
   img: string = 'https://img.freepik.com/free-photo/glass-water-pills-desk_23-2148551003.jpg?w=1380&t=st=1701011628~exp=1701012228~hmac=53e272433863acd2e99ee065646cefa3ce7b2d51a0578d4ca0c2a9c4c386636f';
   id: string | null = null;
-  addressInfo?: AddressModel;
+  addressInfo?: any;
   paramsSubscription?: Subscription;
   editAddressSubscription?: Subscription;
   constructor(private route: ActivatedRoute, private router: Router, private contactService: ContactService) { }

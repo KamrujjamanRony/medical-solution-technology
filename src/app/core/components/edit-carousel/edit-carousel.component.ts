@@ -1,14 +1,18 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from '@environments/environments';
-import { CarouselModel } from 'app/core/features/model/carousel.model';
 import { CarouselService } from 'app/core/features/services/carousel.service';
 import { Subscription } from 'rxjs';
+import { CoverComponent } from '../cover/cover.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-edit-carousel',
   templateUrl: './edit-carousel.component.html',
-  styleUrls: ['./edit-carousel.component.css']
+  styleUrls: ['./edit-carousel.component.css'],
+  standalone: true,
+  imports: [CoverComponent, FormsModule, CommonModule]
 })
 export class EditCarouselComponent implements OnInit, OnDestroy {
   yourTitle: string = 'Update Carousel information';
@@ -21,7 +25,7 @@ export class EditCarouselComponent implements OnInit, OnDestroy {
   id: string | null = null;
   url!: string;
   private file?: File;
-  carouselInfo?: CarouselModel;
+  carouselInfo?: any;
   paramsSubscription?: Subscription;
   editCarouselSubscription?: Subscription;
   constructor(private route: ActivatedRoute, private router: Router, private carouselService: CarouselService) { }

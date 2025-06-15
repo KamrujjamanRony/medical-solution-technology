@@ -1,17 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { environment } from '@environments/environments';
-import { ProductModel } from 'app/core/features/model/product.model';
 import { ProductService } from 'app/core/features/services/product.service';
 import { Observable, Subscription } from 'rxjs';
 import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { CoverComponent } from '../cover/cover.component';
 
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  standalone: true,
+  imports: [CommonModule, CoverComponent, RouterLink, MatDialogModule]
 })
 
 
@@ -23,7 +26,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   img: string = 'https://img.freepik.com/free-photo/doctors-stethoscope-white-background_53876-146858.jpg?w=1380&t=st=1701010335~exp=1701010935~hmac=d87ccb8622bcec8e4fc9de907ac3d31b429544dc0e04920b7e8abdba2e682d62';
   emptyImg: string = environment.emptyImg;
   loading: boolean = true;
-  products$?: Observable<ProductModel[]>;
+  products$?: Observable<any[]>;
   deleteProductSubscription?: Subscription;
   companyID: number = environment.companyCode;
   ImageApi: string = environment.ImageApi;

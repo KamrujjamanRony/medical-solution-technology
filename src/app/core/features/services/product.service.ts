@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
-import { ProductModel } from '../model/product.model';
-import { AddProductRequest } from '../model/add-poduct-request.model';
 import { environment } from '@environments/environments';
-import { UpdateProductRequest } from '../model/update-product-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,29 +10,29 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  addProduct(model: AddProductRequest | FormData): Observable<void>{
+  addProduct(model: any | FormData): Observable<void> {
     return this.http.post<void>(environment.ProductApi, model)
   }
 
-  getAllProducts(): Observable<ProductModel[]> {
-    return this.http.get<ProductModel[]>(environment.ProductApi);
+  getAllProducts(): Observable<any[]> {
+    return this.http.get<any[]>(environment.ProductApi);
   }
 
-  getCompanyProducts(companyID: number): Observable<ProductModel[]> {
+  getCompanyProducts(companyID: number): Observable<any[]> {
     return this.getAllProducts().pipe(
       map(products => products.filter(product => product.companyID === companyID))
     );
   }
 
-  getProduct(id: string): Observable<ProductModel>{
-    return this.http.get<ProductModel>(`${environment.ProductApi}/GetProductById?id=${id}`);
+  getProduct(id: string): Observable<any> {
+    return this.http.get<any>(`${environment.ProductApi}/GetProductById?id=${id}`);
   }
 
-  updateProduct(id: string, updateProductRequest: UpdateProductRequest | FormData): Observable<ProductModel>{
-    return this.http.put<ProductModel>(`${environment.ProductApi}/EditProduct/${id}`, updateProductRequest);
+  updateProduct(id: string, updateProductRequest: any | FormData): Observable<any> {
+    return this.http.put<any>(`${environment.ProductApi}/EditProduct/${id}`, updateProductRequest);
   }
 
-  deleteProduct(id: string): Observable<ProductModel>{
-    return this.http.delete<ProductModel>(`${environment.ProductApi}/DeleteProduct?id=${id}`);
+  deleteProduct(id: string): Observable<any> {
+    return this.http.delete<any>(`${environment.ProductApi}/DeleteProduct?id=${id}`);
   }
 }

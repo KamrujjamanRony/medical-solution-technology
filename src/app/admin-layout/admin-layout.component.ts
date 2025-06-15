@@ -1,10 +1,16 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterOutlet } from '@angular/router';
+import { SidebarComponent } from 'app/core/components/sidebar/sidebar.component';
 import { DataService } from 'app/core/features/services/data.service';
 
 @Component({
   selector: 'app-admin-layout',
   templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.css']
+  styleUrls: ['./admin-layout.component.css'],
+  standalone: true,
+  imports: [RouterOutlet, FormsModule, SidebarComponent, CommonModule]
 })
 export class AdminLayoutComponent {
   private readonly dataService = inject(DataService);
