@@ -12,8 +12,9 @@ export class AppComponent {
     AOS.init({
       duration: 750,
       delay: 150,
+      once: true,
     })
-    console.log("Develope by Md. Kamrujjaman at SuperSoft")
+    console.log("Developed by Md. Kamrujjaman at SuperSoft")
   }
 
   ngAfterViewInit(): void {
@@ -21,5 +22,5 @@ export class AppComponent {
       AOS.refresh()
     }, 500)
   }
-  
+
 }
